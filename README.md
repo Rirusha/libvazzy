@@ -1,2 +1,2 @@
-# libvazzy
-Library for Vala with fuzzy search functions
+# alt-repo-api
+ALT Repo API library on Vala 
