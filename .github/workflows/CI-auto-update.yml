@@ -5,8 +5,6 @@ on:
   push:
     branches:
       - 'main'
-  schedule:
-    - cron:  '59 23 * * *'
 
 jobs:
   lint-vala:
@@ -61,7 +59,7 @@ jobs:
       - name: Install libs on container
         run: |
           apt-get update
-          apt-get install -y git python3.12 valac meson ninja-build libgee-0.8-dev libglib2.0-dev libsoup-3.0-dev libjson-glib-dev gobject-introspection
+          apt-get install -y git python3.12 valac meson ninja-build libgee-0.8-dev libglib2.0-dev gobject-introspection
           
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -71,35 +69,3 @@ jobs:
 
       - name: Build
         run: meson compile -C _build
-
-  # update:
-  #   name: Update&Push
-  #   runs-on: ubuntu-latest
-  #   needs: test-build
-
-  #   container:
-  #     image: ubuntu:latest
-
-  #   steps:
-  #     - name: Install libs on container
-  #       run: |
-  #         apt-get update
-  #         apt-get install -y git python3.12
-
-  #     - name: Checkout repository
-  #       uses: actions/checkout@v4
-
-  #     - name: Setup
-  #       run: sh auto-update/update.sh
-
-  #     - name: Setup
-  #       run: |
-  #         git config --global user.email "auto-updater@users.noreply.github.com"
-  #         git config --global user.name "auto-updater" 
-
-  #     - name: Push
-  #       run: |
-  #         chmod -R 744 .
-  #         git add ./lib/*
-  #         git commit -m "Update
-  #         git push
