@@ -1,2 +1,5 @@
-# alt-repo-api
-ALT Repo API library on Vala 
+# libVazzuy
+Library for Vala with fuzzy search functions
+
+Currently, the library contains:
+- Damerau-Levenstein distance
