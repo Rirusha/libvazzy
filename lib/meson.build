@@ -3,7 +3,7 @@ vapi_sources = files(
 )
 
 vala_sources = files(
-  'main.vala',
+  'damerau-levenshtein-distance.vala',
 )
 
 libvazzy_sources = [
