@@ -69,3 +69,6 @@ jobs:
 
       - name: Build
         run: meson compile -C _build
+
+      - name: Test
+        run: meson test -C _build
