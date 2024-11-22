@@ -51,6 +51,7 @@ add_project_arguments(
 )
 
 subdir('lib')
+subdir('tests')
 
 if get_option('documentation')
   subdir('doc')
