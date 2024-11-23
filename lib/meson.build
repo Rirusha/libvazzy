@@ -12,7 +12,7 @@ libvazzy_sources = [
 ]
 
 libvazzy = shared_library(
-  'vazzy',
+  project_name,
   libvazzy_sources,
   dependencies: libvazzy_dependencies,
   vala_header: libvazzy_header,
@@ -33,7 +33,7 @@ deps_conf = configuration_data()
 deps_conf.set ('DEPS',  '\n'.join (deps_pkgs))
 
 configure_file(
-  input: 'libvazzy.deps.in',
+  input: libvazzy_deps + '.in',
   output: libvazzy_deps,
   configuration: deps_conf,
   install: true,
