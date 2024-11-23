@@ -12,7 +12,7 @@ libvazzy_sources = [
 ]
 
 libvazzy = shared_library(
-  'alt-repo',
+  'vazzy',
   libvazzy_sources,
   dependencies: libvazzy_dependencies,
   vala_header: libvazzy_header,
