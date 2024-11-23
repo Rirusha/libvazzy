@@ -33,7 +33,7 @@ deps_conf = configuration_data()
 deps_conf.set ('DEPS',  '\n'.join (deps_pkgs))
 
 configure_file(
-  input: libvazzy_deps + '.in',
+  input: project_name + '.deps.in',
   output: libvazzy_deps,
   configuration: deps_conf,
   install: true,
