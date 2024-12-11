@@ -6,35 +6,35 @@ vala_sources = files(
   'damerau-levenshtein-distance.vala',
 )
 
-libvazzy_sources = [
+sources = [
   vapi_sources,
   vala_sources,
 ]
 
-libvazzy = shared_library(
-  lib_name,
-  libvazzy_sources,
-  dependencies: libvazzy_dependencies,
-  vala_header: libvazzy_header,
-  vala_vapi: libvazzy_vapi,
-  vala_gir: libvazzy_gir,
+lib = shared_library(
+  versioned_name,
+  sources,
+  dependencies: dependencies,
+  vala_header: header_name,
+  vala_vapi: vapi_name,
+  vala_gir: gir_name,
   version: meson.project_version(),
   install: true,
   install_dir: [ true, true, true, true ],
 )
 
-libvazzy_dep = declare_dependency(
-  link_with: libvazzy,
+lib_dep = declare_dependency(
+  link_with: lib,
   include_directories: include_directories('.'),
-  dependencies: libvazzy_dependencies
+  dependencies: dependencies
 )
 
 deps_conf = configuration_data()
 deps_conf.set ('DEPS',  '\n'.join (deps_pkgs))
 
 configure_file(
-  input: project_name + '.deps.in',
-  output: libvazzy_deps,
+  input: 'lib.deps.in',
+  output: deps_name,
   configuration: deps_conf,
   install: true,
   install_dir: get_option('datadir') / 'vala' / 'vapi',
@@ -49,22 +49,22 @@ if get_option('introspection')
       '--shared-library', '@PLAINNAME@',
       '--output', '@OUTPUT@',
       '--includedir', gee_girdir,
-      meson.current_build_dir() / libvazzy_gir,
+      meson.current_build_dir() / gir_name,
     ],
-    input: libvazzy,
-    output: libvazzy_typelib,
-    depends: libvazzy,
+    input: lib,
+    output: typelib_name,
+    depends: lib,
     install: true,
     install_dir: get_option('libdir') / 'girepository-1.0',
   )
 endif
 
 pkgconfig.generate(
-  libvazzy,
-  name: versioned_name,
-  requires: libvazzy_dependencies,
-  subdirs: [ versioned_name ],
-  description: 'Base objects for API libraries',
+  lib,
+  name: versioned_lib_name,
+  requires: dependencies,
+  subdirs: [ versioned_lib_name ],
+  description: 'Library with fuzzy search functions',
   version: meson.project_version(),
   url: 'https://github.com/Rirusha/libvazzy',
 )
