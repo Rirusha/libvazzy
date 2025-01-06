@@ -3,7 +3,7 @@
 %define api_version @LAST_API_VERSION@
 %define minor_version @LAST_MINOR_VERSION@
 %define glib2_ver 2.74
-%define gir_name ASSERT-%api_version
+%define gir_name Vazzy-%api_version
 
 Name: libvazzy-%api_version
 Version: %api_version.%minor_version
